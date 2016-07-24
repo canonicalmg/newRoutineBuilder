@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="/static/myapp/index.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dynamic Routine Builder</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Dynamic Routine Builder</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="disabled"><a href="#">Dashboard</a></li>
+                <li class="disabled"><a href="#">Settings</a></li>
+                <li class="disabled"><a href="#">Profile</a></li>
+                <li class="disabled"><a href="#">Help</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="http://donowhy2.pythonanywhere.com">Overview <span class="sr-only">(current)</span></a></li>
+                <li><a href="http://donowhy2.pythonanywhere.com/getStarted">Get Started</a></li>
+                <li class="disabled"><a href="#">Discover</a></li>
+                <li class="disabled"><a href="#">Analytics</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <!--<h1 class="page-header">Dashboard</h1>
+
+
+            <h2 class="sub-header">Section title</h2>-->
+
+            <!--<div class='center-block bs-callout bs-callout-primary' style='width:50%; margin-left:20%;'>
+             <form>
+               <div class="form-group">
+                   <label for="exampleInputEmail1">Email address</label>
+                   <input type="email" class="form-control" id="SignUpInputEmail" placeholder="Email">
+               </div>
+               <div class="form-group">
+                   <label for="exampleInputPassword1">Password</label>
+                   <input type="password" class="form-control" id="SignUpInputPassword" placeholder="Password">
+               </div>
+               </form>
+               <button type="submit" id="signUp" class="btn btn-info" style="width:100%;">SIGN UP FOR FREE</button>
+
+               <p>or <a href="">Sign-In</a></p>
+           </div>-->
+
+            <h4>Generate a Routine</h4>
+            <p class="help-block">Enter your Bodyweight and Gender</p>
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="bodyWeight">BodyWeight</label>
+                    <input type="text" class="form-control" id="bodyWeight" placeholder="(lb)">
+                </div>
+                <div class="form-group">
+                    <label for="genderToggle">Gender</label>
+                    <form id="myForm">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="genderMale" value="Male" checked>
+                                Male
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="genderFemale" value="Female">
+                                Female
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </form>
+            <hr>
+
+            <h4>Select a type of routine</h4>
+            <p class="help-block">Select your sport or hobby so that the routine is customly tailored to your activities</p>
+            <select name="list-select" id="routineDropDown">
+                <!--<option disabled value='0'>Please select a routine...</option>-->
+                <option value='0'>Bodybuilding</option>
+                <option value='1'>Powerlifting</option>
+                <option value='2'>Rock Climbing</option>
+            </select>
+            <hr>
+
+            <h4>Exercises</h4>
+            <p class="help-block">Select which exercises which you have the most recent stats for</p>
+            <div id='exerciseList'>
+                {% for eachExercise in compoundExercises %}
+                    <div class='checkbox'>
+                        <label>
+                            <input id='exe{{ eachExercise.exerciseActual.pk }}' class='exerciseCheck' type='checkbox'> {{ eachExercise.exerciseActual.exerciseName }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
+            <div id='exerciseForm'>
+
+            </div>
+            <div id='preMuscleLoader'></div>
+            <div id='resultLifts'>
+
+            </div>
+            <div id="resultMusclesTitle"></div>
+            <div id='resultMuscles' class="row">
+                <div id="BeginnerMuscle" class="resultMuscleC col-md-2 col-md-offset-1"></div>
+                <div id="NoviceMuscle" class="resultMuscleC col-md-2"></div>
+                <div id="IntermediateMuscle" class="resultMuscleC col-md-2"></div>
+                <div id="AdvancedMuscle" class="resultMuscleC col-md-2"></div>
+                <div id="EliteMuscle" class="resultMuscleC col-md-2"></div>
+            </div>
+            <hr>
+
+            <div id='preRoutineLoader'></div>
+
+            <div id='resultRoutine' style ="display:none;">
+                <h4>Routine</h4>
+                <div class="container">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr id='mondayRoutine'>
+                                <td><label style="text-decoration:underline;">Monday</label></td>
+                            </tr>
+                            <tr id='tuesdayRoutine'>
+                                <td><label style="text-decoration:underline;">Tuesday</label></td>
+                            </tr>
+                            <tr id='wednesdayRoutine'>
+                                <td><label style="text-decoration:underline;">Wednesday</label></td>
+                            </tr>
+                            <tr id='thursdayRoutine'>
+                                <td><label style="text-decoration:underline;">Thursday</label></td>
+                            </tr>
+                            <tr id='fridayRoutine'>
+                                <td><label style="text-decoration:underline;">Friday</label></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <br>
+            <button id="createRoutine" name="singlebutton" display="width:50%;" class="center-block btn btn-primary">Create</button>
+            <div id="creationError"></div>
+
+
+        </div>
+
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+<script src="/static/myapp/index.js"></script>
+
