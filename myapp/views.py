@@ -362,7 +362,7 @@ def genRoutine(request):
             routineWeek['thursday'] = thursdayTuple[0]
             exerciseCounter = thursdayTuple[1]
             print "Thursday routine - ", routineWeek['thursday']
-
+            #s
             fridayTuple = generateMondayRoutine2(muscleStatsArr[7:10] + muscleStatsArr[15:18], exerciseCounter, 5)
             routineWeek['friday'] = fridayTuple[0]
             exerciseCounter = fridayTuple[1]
